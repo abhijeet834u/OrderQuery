@@ -1,0 +1,5 @@
+
+CREATE VIEW [dbo].[View]
+	AS SELECT [Order].OrderId, [Order].OrderDate,[Order].OrderNumber,[Order].CustomerId,[Order].TotalAmount, [Product].ProductName, [OrderItem].Quantity, [Product].UnitPrice from [dbo].Product 
+	JOIN [dbo].[OrderItem] on ([Product].ProductId = [OrderItem].ProductId)
+	JOIN [dbo].[Order] on ([Order].OrderId = OrderItem.OrderId)

@@ -1,0 +1,28 @@
+CREATE TABLE [dbo].[Order] (
+    [OrderId]     INT  NOT NULL,
+    [OrderDate]   DATE NOT NULL,
+    [OrderNumber] INT  NOT NULL,
+    [CustomerId]  INT  NOT NULL,
+    [TotalAmount] INT  NOT NULL,
+    PRIMARY KEY CLUSTERED ([OrderId] ASC)
+);
+
+CREATE TABLE [dbo].[OrderItem] (
+    [OrdItemId] INT NOT NULL,
+    [OrderId]   INT NOT NULL,
+    [ProductID] INT NOT NULL,
+    [UnitPrice] INT NOT NULL,
+    [Quantity]  INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([OrdItemId] ASC),
+    CONSTRAINT [fk_product_id] FOREIGN KEY ([ProductID]) REFERENCES [dbo].[Product] ([ProductId]),
+    CONSTRAINT [fk_order] FOREIGN KEY ([OrderId]) REFERENCES [dbo].[Order] ([OrderId])
+);
+
+CREATE TABLE [dbo].[Product] (
+    [ProductId]   INT            NOT NULL,
+    [ProductName] NVARCHAR (100) NOT NULL,
+    [SupplierId]  INT            NOT NULL,
+    [UnitPrice]   INT            NOT NULL,
+    [Package]     INT            NOT NULL,
+    PRIMARY KEY CLUSTERED ([ProductId] ASC)
+);
